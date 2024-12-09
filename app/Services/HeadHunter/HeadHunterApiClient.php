@@ -70,12 +70,16 @@ class HeadHunterApiClient
             return '{}';
         }
 
+        if($method === 'GET') {
+            $uri .= '?' . http_build_query($data);
+        }
+
         try {
             $request = new Request(
                 $method,
                 $this->getHost() . $uri,
                 ($headers + $this->defaultHeaders),
-                (empty($data) ? null : json_encode($data))
+                (empty($data) || $method === 'GET' ? null : json_encode($data))
             );
 
             $response = $this->httpClient->getResponse($request);
@@ -126,7 +130,8 @@ class HeadHunterApiClient
 
         if (!array_key_exists($name, $this->serviceInstances)) {
             $class = $services[$name];
-            $this->serviceInstances[$name] = new $class($this);
+            $this->serviceInstances[$name] = app($class) ;
+            //TODO fix
         }
 
         return $this->serviceInstances[$name];

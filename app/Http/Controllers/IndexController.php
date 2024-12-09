@@ -8,7 +8,10 @@ class IndexController extends Controller
 {
     public function index()
     {
-        // app()->make(HeadHunterApiClient::class, ['config' => []])
-          //  ->vacancies()->getVacancies();
+        return dd(app()->make(
+            HeadHunterApiClient::class,
+            ['config' => []]
+        )
+            ->vacancies()->getVacancies());
     }
 }
