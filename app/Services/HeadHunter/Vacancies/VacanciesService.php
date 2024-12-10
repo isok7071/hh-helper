@@ -10,11 +10,7 @@ class VacanciesService extends AbstractService
     private const URI = '/vacancies';
 
     public function getVacancies(
-        array $queryParams = [
-            'describe_arguments' => true,
-            'clusters' => true,
-            'text' => '"Программист PHP"'
-        ]
+        array $queryParams = []
     ): VacanciesDTO {
         return $this->mapper->map(
             json_decode(
