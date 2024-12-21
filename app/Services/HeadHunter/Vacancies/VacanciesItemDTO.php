@@ -4,7 +4,7 @@ namespace App\Services\HeadHunter\Vacancies;
 
 class VacanciesItemDTO
 {
-    public string $id;
+    public int $id;
 	public bool $premium;
 	public string $name;
 	public $department;
@@ -25,7 +25,7 @@ class VacanciesItemDTO
 	public string $url;
 	public string $alternate_url;
 	public $relations;
-	public $employer;
+	public VacanciesItemEmployer $employer;
 	public $snippet;
 	public $contacts;
 	public $schedule;

@@ -14,25 +14,19 @@ use AlexMasterov\OAuth2\Client\Provider\HeadHunter;
 use App\Services\HeadHunter\Vacancies\VacanciesService;
 
 /**
- * @method Vacancies vacancies()
+ * @method VacanciesService vacancies()
  */
 class HeadHunterApiClient
 {
     private const DEFAULT_HOST = 'https://api.hh.ru';
 
-    /** @var array */
-    private $defaultHeaders = [
+    private array $defaultHeaders = [
         'accept' => 'text/plain',
         'Content-Type' => 'application/json',
     ];
 
-    /** @var array */
-    protected $serviceInstances = [];
+    protected array $serviceInstances = [];
 
-    /**
-     * @param ClientInterface $client
-     * @param array $config
-     */
     public function __construct(
         private HeadHunter $httpClient,
         private array $config = [],
@@ -41,14 +35,7 @@ class HeadHunterApiClient
         $this->config = $config + $this->config;
     }
 
-    public function setLogger(LoggerInterface $logger): self
-    {
-        $this->logger = $logger;
-
-        return $this;
-    }
-
-    protected function getServiceMap(): array
+    protected static function getServiceMap(): array
     {
         return [
             'vacancies' => VacanciesService::class,

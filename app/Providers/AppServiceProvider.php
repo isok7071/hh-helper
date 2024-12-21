@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(HeadHunterApiClient::class, function (): HeadHunterApiClient {
-            return new HeadHunterApiClient(
+            return new HeadHunterApiClient
+            (
                 app(HeadHunter::class),
                 [],
                 app(LoggerInterface::class)
