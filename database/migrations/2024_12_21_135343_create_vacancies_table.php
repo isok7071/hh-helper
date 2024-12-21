@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('external_id');
+            $table->unsignedBigInteger('external_id')->unique();
             $table->string('name');
             $table->string('url');
             $table->foreignId('employer_id')
