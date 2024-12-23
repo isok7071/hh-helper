@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('external_id')->unique();
-            $table->string('name');
+            $table->string('name', 400);
             $table->string('url');
             $table->foreignId('employer_id')
                 ->constrained('employers')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->decimal('salaryFrom')->nullable()->default(null);
+            $table->decimal('salaryTo')->nullable()->default(null);
+            $table->bool('gross')->nullable()->default(null);
+            $table->string('currency')->nullable()->default(null);
             $table->timestamps();
         });
     }

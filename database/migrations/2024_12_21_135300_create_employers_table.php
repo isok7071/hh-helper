@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('employers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('external_id')->unique();
-            $table->string('name');
+            $table->string('name', 400);
             $table->string('url');
+            $table->boolean('trusted')->default(false);
             $table->timestamps();
         });
     }
