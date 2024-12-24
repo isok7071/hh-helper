@@ -13,17 +13,22 @@ return new class extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('external_id')->unique();
+            $table->unsignedBigInteger('external_id')->unique()->index();
             $table->string('name', 400);
             $table->string('url');
             $table->foreignId('employer_id')
                 ->constrained('employers')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->decimal('salaryFrom')->nullable()->default(null);
-            $table->decimal('salaryTo')->nullable()->default(null);
-            $table->bool('gross')->nullable()->default(null);
+            $table->decimal('salaryFrom')->nullable()->default(null)->index();
+            $table->decimal('salaryTo')->nullable()->default(null)->index();
+            $table->boolean('gross')->nullable()->default(null);
             $table->string('currency')->nullable()->default(null);
+            $table->string('adress_raw');
+            $table->foreignId('experience_id')
+                ->constrained('experiences')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamp('published_at');
             $table->timestamps();
         });

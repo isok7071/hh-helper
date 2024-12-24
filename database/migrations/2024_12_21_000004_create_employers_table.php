@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('employers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('external_id')->unique();
+            $table->unsignedBigInteger('external_id')->unique()->index();
             $table->string('name', 400);
             $table->string('url');
             $table->boolean('trusted')->default(false);
