@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('salaryTo')->nullable()->default(null);
             $table->bool('gross')->nullable()->default(null);
             $table->string('currency')->nullable()->default(null);
+            $table->timestamp('published_at');
             $table->timestamps();
         });
     }
